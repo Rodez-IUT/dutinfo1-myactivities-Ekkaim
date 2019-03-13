@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION get_default_owner() RETURNS "user" AS $$
 	DECLARE
-		defautlowner "user"%rawtype
+		defaultowner "user"%ROWTYPE;
 	BEGIN
 		SELECT * INTO defaultowner FROM "user" WHERE username='Default Owner';
 		IF NOT FOUND THEN
@@ -10,4 +10,4 @@ CREATE OR REPLACE FUNCTION get_default_owner() RETURNS "user" AS $$
 		END IF;
 		return defaultowner;
 	END
-$$ LANGUAGE SQL;
+$$ LANGUAGE PLPGSQL;
